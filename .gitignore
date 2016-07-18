@@ -1,0 +1,5 @@
+_site
+_cache
+_evernote.yml
+.sass-cache
+.jekyll-metadata
