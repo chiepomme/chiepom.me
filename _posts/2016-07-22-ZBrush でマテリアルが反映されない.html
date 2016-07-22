@@ -1,0 +1,100 @@
+---
+title: ZBrush でマテリアルが反映されない
+layout: post
+published: true
+date: 2016-07-22 09:02:39 +0900
+tags:
+- tips
+- ZBrush
+---
+<div>
+  ZBrush でマテリアルが反映されない問題が出てしまったので2日くらい調べていました。だいたいは以下のことが原因みたいです。
+</div>
+<div>
+  <br/>
+</div>
+<ul>
+  <li>
+    Tool | Subtool の筆のマーク（Polypaint）がオンになっているのを確認する
+  </li>
+  <li>
+    Tool | Layers で Recording になっていないのを確認する
+  </li>
+  <li>
+    Render | Flat になっていないのを確認する
+  </li>
+  <li>
+    マスクされていないのを確認する
+  </li>
+  <li>
+    ZAdd の左にある M や Rgbm にチェックが入っていることを確認する
+  </li>
+</ul>
+<div>
+  <br/>
+</div>
+<div>
+  ただ、今回私がぶつかった問題は、キャンバスとプレビューで表示されるマテリアルが違う問題で、上記の項目は全て問題ありませんでした。
+</div>
+<div>
+  <br/>
+</div>
+<div>
+  <img src="{{ site.baseurl }}/resources/47368ab4f1aa6deeb32a0166dbde3e39.png"/>
+</div>
+<div>
+  <br/>
+</div>
+<div>
+  どうしても検索しても解決しないので公式のフォーラムで訪ねてみたところ、すぐに返事が来ました。
+</div>
+<div>
+  Painted material isn't used in canvas but shown in previews
+</div>
+<div>
+  <a href="http://www.zbrushcentral.com/showthread.php?201517-Painted-material-isn-t-used-in-canvas-but-shown-in-previews&amp;amp;p=1183965">
+    http://www.zbrushcentral.com/showthread.php?201517-Painted-material-isn-t-used-in-canvas-but-shown-in-previews&p=1183965
+  </a>
+</div>
+<div>
+  <br/>
+</div>
+<div style="margin-left:40px;">
+  aurick wrote:
+</div>
+<div style="margin-left:40px;">
+  <br/>
+</div>
+<div style="margin-left:40px;">
+  This has us stumped at first. Then we figured out what was going wrong.
+</div>
+<div style="margin-left:40px;">
+  <br/>
+</div>
+<div style="margin-left:40px;">
+  To fix this, simply select the Polymesh3D Tool and have it in Edit mode on the canvas before you load your model. You'll find that it now works properly.
+</div>
+<div style="margin-left:40px;">
+  <br/>
+</div>
+<div style="margin-left:40px;">
+  The issue appears to only happen if you load the model directly without already having a polymesh selected.
+</div>
+<div>
+  <br/>
+</div>
+<div>
+  簡単に訳すと「この問題には最初みんな躓くんだよね。治すためには、自分のモデルを読み込む前に、Polymesh3D ツールを選択して、編集モードに入る。それでちゃんと動くはずだよ。この問題は polymesh を選択せずに直接モデルを読み込んだ場合にだけ起こるんだ。」だそうです。
+</div>
+<div>
+  <br/>
+</div>
+<div>
+  実はこの回答をもらうちょっと前に試行錯誤していたらいつのまにか治ってしまっていたんです。ただ、そのときも新しいプロジェクトを作成して Polymesh3D や ZSphere を置いて編集したあと、元のプロジェクトを開き直した状態だったので、知らず知らずのうちに上記の手順を踏んでいたようでした。
+</div>
+<div>
+  <br/>
+</div>
+<div>
+  aurick さんありがとうございました！似たようなことで躓いているどなたかの助けになりますように！
+</div>
