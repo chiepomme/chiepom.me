@@ -1,0 +1,39 @@
+---
+title: ローカルサーバーでも FONTPLUS を使う
+layout: post
+published: true
+date: 2016-07-23 12:34:22 +0900
+tags:
+- tips
+- webfont
+---
+<div>
+  私は個人でフォントワークスの LETS を契約しているので 
+  <a href="https://webfont.fontplus.jp/">
+    FONTPLUS
+  </a>
+   というウェブフォントのサービスが無料で使えるのですが、私の場合 `Jekyll serve` でローカルでサーバーを立てて確認するときに、フォントが読み込めず、ずっとこんなエラーが出ていました。
+</div>
+<div>
+  <br/>
+</div>
+<div>
+  {% highlight  %}
+  Font from origin 'http://webfont.fontplus.jp' has been blocked from loading by Cross-Origin Resource Sharing policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://127.0.0.1:4000' is therefore not allowed access. The response had HTTP status code 404.
+  {% endhighlight %}
+</div>
+<div>
+  <br/>
+</div>
+<div>
+  いわゆるクロスオリジンというドメインが違うところからリソースを読み込もうとするのを遮断するための機能なのですが、FONTPLUS 側の対応が必要になるのでどうしようもないかなと思っていましたが、単純にローカルのアドレスをサイト登録したらちゃんとフォントが読み込めるようになりました。
+</div>
+<div>
+  <br/>
+</div>
+<div>
+  <img src="{{ site.baseurl }}/resources/224d058df047c4943ff8c334a315a73f.png"/>
+</div>
+<div>
+  こんな感じです！これでいろんなフォント使えてハッピーになれそうです！
+</div>
