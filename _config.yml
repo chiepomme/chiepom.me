@@ -13,7 +13,17 @@ description: > # this means to ignore newlines until "baseurl:"
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://chiepom.me" # the base hostname & protocol for your site
 twitter_username: chiepomme
-github_username:  chiepomme
+github_username: chiepomme
 
 # Build settings
 markdown: kramdown
+
+# jekyll-seo-tag settings
+author:
+  twitter: chiepomme
+twitter:
+  username: chiepomme
+
+
+gems:
+  - jekyll-seo-tag
