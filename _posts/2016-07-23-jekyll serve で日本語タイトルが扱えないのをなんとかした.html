@@ -1,0 +1,30 @@
+---
+title: jekyll serve で日本語タイトルが扱えないのをなんとかした
+layout: post
+published: true
+date: 2016-07-23 15:27:41 +0900
+tags:
+- tips
+- tech
+---
+<div>
+  `jekyll serve` でずっと日本語ファイル名がうまく扱えなくて困っていたのですが、コードを読んでいったところパスの処理で utf-8 で扱うべきところを sjis で扱っているように見える部分があったので、パッチを当ててみたところ動くようになりました。
+</div>
+<div>
+  <br/>
+</div>
+<div>
+  パッチはこういうものです。ほぼ元のソースと変わりませんが、文字コードの指定方法だけ変えてあります。
+</div>
+<div>
+  <script src="https://gist.github.com/chiepomme/80c1cc24dde97d1d59225743d7437e43.js"></script>
+</div>
+<div>
+  できることなら `Encoding.find` だけ一時的に書き換えたかったのですが、 Ruby にそこまで明るくないのでやり方がわかりませんでした。
+</div>
+<div>
+  <br/>
+</div>
+<div>
+  上記のコードを `[jekyll root]/_plugins` ディレクトリに置けば `jekyll serve` で日本語ファイル名のファイルも見られるようになると思います。
+</div>
