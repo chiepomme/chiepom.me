@@ -205,3 +205,23 @@ pre {
         }
     }
 }
+
+/**
+ * Share buttons
+ */
+
+.post-share a {
+    border: 1px solid $grey-color;
+    border-radius: 6px;
+    font-size: $small-font-size;
+    padding: 4px 8px;
+    margin: 2px;
+    background-color: white;
+    color: $grey-color;
+    text-decoration: none;
+}
+
+.post-share a:hover {
+    background-color: $grey-color;
+    color: white;
+}

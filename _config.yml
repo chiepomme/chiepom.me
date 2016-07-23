@@ -23,7 +23,8 @@ author:
   twitter: chiepomme
 twitter:
   username: chiepomme
-
+facebook:
+  admins: chiepomme
 
 gems:
   - jekyll-seo-tag
