@@ -1,0 +1,32 @@
+---
+title: MayaLT に GoZ する方法
+layout: post
+published: false
+date: 2016-07-24 02:23:24 +0900
+---
+<div>
+  C:\Users\Public\Pixologic\GoZApps\Maya
+</div>
+<div>
+  <br/>
+</div>
+<div>
+  GoZBrushFromMaya.mel
+</div>
+<div>
+  GoZBrushToMaya.mel
+</div>
+<div>
+  L.132
+</div>
+<div>
+  {% highlight mel %}
+  // ------------------------------------------
+  // GoZBrushToMaya requires Mental Ray plugin.
+  if (`pluginInfo -query -loaded -name "Mayatomr"`==0)
+  {
+    loadPlugin "Mayatomr" ;
+    //setCurrentRenderer mentalRay;
+  }
+  {% endhighlight %}
+</div>
