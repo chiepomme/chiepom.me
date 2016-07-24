@@ -1,0 +1,104 @@
+---
+title: Maya LT に GoZ する方法
+layout: post
+published: true
+date: 2016-07-24 02:23:24 +0900
+tags:
+- tips
+- ZBrush
+- Maya LT
+---
+<h1>
+  はじめに
+</h1>
+<div>
+  ZBrush には Maya などのソフトウェアと連携する GoZ という仕組みがありますが、Maya LT だとそのまま使えません。全てがうまく動くかは怪しいですが一応問題を回避する方法があるのでご紹介します。
+</div>
+<div>
+  <br/>
+</div>
+<h1>
+  GoZ For Maya のインストール
+</h1>
+<div>
+  最初に GoZ しようとするか、Preferences | GoZ | path to Maya を選ぶと、Maya の場所を聞かれるので maya.exe を指定します。
+</div>
+<div>
+  steam からのインストールの場合、なにも設定しないと `C:\Program Files (x86)\Steam\steamapps\common\MayaLT\bin\maya.exe` になります。
+</div>
+<div>
+  <br/>
+</div>
+<h1>
+  GoZ To Maya の仕組み
+</h1>
+<ol>
+  <li>
+    `C:\Users\Public\Pixologic\GoZProjects\Default` の中に Maya の形式でオブジェクトを書き出す
+  </li>
+  <li>
+    `C:\Users\Public\Pixologic\GoZBrush\GoZ_ProjectPath.txt` に 1 で書きだしたオブジェクトのパスのリストを書き出す
+  </li>
+  <li>
+    `C:\Users\Public\Pixologic\GoZApps\Maya\GoZBrushToMaya.mel` をコマンドライン引数として `-script` に指定して Maya を起動する
+  </li>
+</ol>
+<div>
+  このうち、3 の実行に 2つ問題があります。
+</div>
+<div>
+  <br/>
+</div>
+<h1>
+  MayaLT はコマンドライン引数の -script に非対応
+</h1>
+<div>
+  まず、MayaLT はコマンドライン引数の `-script` に対応していません。そのため起動時にエラーになってしまいます。これに関しては、先に自分で Maya LT を起動しておき、その後、自分でスクリプトエディタを開いて実行すれば問題ありません。スクリプトエディタは画面右下のボタンから開けます。
+</div>
+<div>
+  <img src="{{ site.baseurl }}/resources/43a560a2ce7810e8766297c14428f89d.png"/>
+</div>
+<div>
+  <br/>
+</div>
+<div>
+  開いたスクリプトエディタで `C:\Users\Public\Pixologic\GoZApps\Maya\GoZBrushToMaya.mel` を開いて実行します。ただし、そこで Maya LT は Mental Ray に対応していませんというエラーが出てしまいます。
+</div>
+<div>
+  <br/>
+</div>
+<h1>
+  Maya LT は Mental Ray に非対応
+</h1>
+<div>
+  エラーが起きた 132 行目を見ると、確かに Mental Ray が存在するかを確認していました。
+</div>
+<div>
+  <br/>
+</div>
+<div>
+  {% highlight tcl %}
+  // ------------------------------------------
+  // GoZBrushToMaya requires Mental Ray plugin.
+  if (`pluginInfo -query -loaded -name "Mayatomr"`==0)
+  {
+    loadPlugin "Mayatomr" ;
+    //setCurrentRenderer mentalRay;
+  }
+  {% endhighlight %}
+</div>
+<div>
+  <br/>
+</div>
+<div>
+  ただし、この部分は、 Mental Ray のプラグインを読み込んでレンダラーとして使用するコードのようなのですが、使用する部分がコメントアウトされていて実際には使われていません。なので、上記の部分をそのまま消すかコメントアウトしてしまいましょう。
+</div>
+<div>
+  <br/>
+</div>
+<h1>
+  終わりに
+</h1>
+<div>
+  この方法を使って ZBrush の Maya Blend Shape プラグインで作った Blend Shape もこれで Maya LT に持っていくことができました。Maya から ZBrush に持っていく時にはまた一手間かかる予感ですが、いまのところ一方方向だけなのでこれで特に問題は起きていません。
+</div>
